@@ -181,8 +181,10 @@ const HTML = `<!DOCTYPE html>
     #terminal-container {
       flex: 1;
       padding: 8px;
+      min-height: 0; /* 关键: 防止 flex 子元素被挤压，导致只有半屏 */
     }
     #terminal {
+      width: 100%;
       height: 100%;
       border-radius: 12px;
       overflow: hidden;
@@ -248,6 +250,10 @@ const HTML = `<!DOCTYPE html>
       cursorBlink: true,
       fontSize: 14,
       fontFamily: "Menlo, Monaco, Consolas, 'Courier New', monospace",
+      scrollback: 50000,   // 加大滚动缓冲，避免长输出被吃掉
+      convertEol: true,    // 正确处理 \\n 换行
+      cols: 160,           // 默认列数
+      rows: 60,            // 默认行数
       theme: {
         background: "#020617",
         foreground: "#e5e7eb",
@@ -262,7 +268,7 @@ const HTML = `<!DOCTYPE html>
     let historyIndex = -1;
 
     function writeSlowly(text) {
-      // 简单逐行输出，避免一次性刷屏太猛
+      // 简单逐行输出
       const lines = text.split("\\n");
       lines.forEach((line, idx) => {
         term.write(line);
