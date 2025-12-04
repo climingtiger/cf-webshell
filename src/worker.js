@@ -252,8 +252,8 @@ const HTML = `<!DOCTYPE html>
       fontFamily: "Menlo, Monaco, Consolas, 'Courier New', monospace",
       scrollback: 50000,   // 加大滚动缓冲，避免长输出被吃掉
       convertEol: true,    // 正确处理 \\n 换行
-      cols: 160,           // 默认列数
-      rows: 60,            // 默认行数
+      cols: 140,           // 默认列数
+      rows: 40,            // 默认行数
       theme: {
         background: "#020617",
         foreground: "#e5e7eb",
